@@ -1,0 +1,99 @@
+﻿<div>
+        <script type="text/javascript">
+				try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+        </script>
+        <div class="main-container-inner">
+            <div class="main-content">
+                <div class="page-content">
+                    <div class="page-header">
+                        <h1>
+                            弹弹堂單個道具查詢
+
+                        </h1>
+                    </div><!-- /.page-header -->
+                    <div class="row">
+
+                        <div class="col-sm-4 widget-container-span ui-sortable">
+
+                            <div class="widget-box" style="opacity: 1; z-index: 0;">
+                                <div class="widget-header">
+                                    <h5 class="smaller">Tips：輸入要查詢字符串</h5>
+
+                                    <div class="widget-toolbar no-border">
+                                        <ul class="nav nav-tabs" id="myTab">
+                                            <li class="active">
+                                                <a data-toggle="tab" href="#home">輸入</a>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div class="widget-body">
+                                    <div class="widget-main padding-6">
+                                        <div class="tab-content">
+                                            <div id="home" class="tab-pane active">
+                                                <textarea class="form-control" id="inputarea" onkeyup="delay()"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+ 
+                        <div class="col-sm-7 widget-container-span ui-sortable">
+                            <div class="widget-box" style="opacity: 1; z-index: 0;">
+                                <div class="widget-header">
+                                    <h5 class="smaller"></h5>
+
+                                    <div class="widget-toolbar no-border">
+                                        <ul class="nav nav-tabs" id="myTab">
+                                            <li class="active">
+                                                <a data-toggle="tab" href="#home">輸出</a>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div class="widget-body" >
+                                    <div class="widget-main padding-6">
+                                        <div class="tab-content">
+                                            <div id="home" class="tab-pane active">
+                                                <textarea class="form-control" id="result" style="height:400px"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div><!-- /.page-content -->
+            </div><!-- /.main-content -->
+            <!-- /#ace-settings-container -->
+        </div>
+    <script type="text/javascript">
+
+        var timer
+        function delay() {
+            clearTimeout(timer);
+            timer = setTimeout("showstr()", 500);
+
+        }
+        function showstr() {
+            $.getJSON('/ddt/single_search_ajax',{
+                str:$('textarea[id="inputarea"]').val()
+            },function(data){
+                $("#result").text(data.result);
+            });
+            return false;
+            };
+
+
+
+
+    </script> 
+    </div>
+    <!-- basic scripts -->
+    <!--[if !IE]> -->
