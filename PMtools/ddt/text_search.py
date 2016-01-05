@@ -35,7 +35,7 @@ def search(itemtext, dict):
     if itemtext in dict.keys():
         return dict[itemtext]
     templist = {}
-    print(itemtext)
+    #print(itemtext)
     for k in dict:
         if len(k) == len(itemtext):
             for j in itemtext[::-1]:
