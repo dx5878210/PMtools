@@ -23,7 +23,7 @@ def multipletextsearch():
 def single_search_ajax():
     temp = request.args.get('str')
     print(temp.isdigit())
-    if temp.isdigit()== True:
+    if temp.isdigit() == True:
         items = mzitemscode.query.filter(
             mzitemscode.uid.ilike(
                 '%' + temp + '%')).all()
@@ -41,5 +41,5 @@ def single_search_ajax():
 @mz.route('/prizetext_search_ajax', methods=['GET', 'POST'])
 def prizetext_search_ajax():
     temp = request.args.get('str')
-    response_str=text_search.codetable(temp)
+    response_str = text_search.codetable(temp)
     return jsonify(result=response_str)
