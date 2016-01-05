@@ -5,8 +5,9 @@ from config.default import basedir
 from flask.ext.sqlalchemy import SQLAlchemy
 
 app = Flask(__name__,instance_relative_config=True)
-app.config.from_object('config.default')
 app.config.from_object('instance.config')
+app.config.from_object('config.default')
+
 
 db = SQLAlchemy(app)
 from PMtools import models
