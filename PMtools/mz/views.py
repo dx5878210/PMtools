@@ -23,7 +23,7 @@ def multipletextsearch():
 def single_search_ajax():
     temp = request.args.get('str')
     print(temp.isdigit())
-    if temp.isdigit() == True:
+    if temp.isdigit()== True:
         items = mzitemscode.query.filter(
             mzitemscode.uid.ilike(
                 '%' + temp + '%')).all()
