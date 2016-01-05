@@ -6,17 +6,17 @@ from . import text_search
 
 @ddt.route('/singlesearch/')
 def singlesearch():
-    return render_template('singlesearch.html')
+    return render_template('ddt/singlesearch.html')
 
 
 @ddt.route('/multiplesearch/')
 def multiplesearch():
-    return render_template('multiplesearch.html')
+    return render_template('ddt/multiplesearch.html')
 
 
 @ddt.route('/multipletextsearch/')
 def multipletextsearch():
-    return render_template('multipletextsearch.html')
+    return render_template('ddt/multipletextsearch.html')
 
 
 @ddt.route('/single_search_ajax/', methods=['GET', 'POST'])

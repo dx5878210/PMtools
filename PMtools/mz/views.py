@@ -6,17 +6,17 @@ from . import text_search
 
 @mz.route('/singlesearch/')
 def singlesearch():
-    return render_template('singlesearch.html')
+    return render_template('mz/singlesearch.html')
 
 
 @mz.route('/multiplesearch/')
 def multiplesearch():
-    return render_template('multiplesearch.html')
+    return render_template('mz/multiplesearch.html')
 
 
 @mz.route('/multipletextsearch/')
 def multipletextsearch():
-    return render_template('multipletextsearch.html')
+    return render_template('mz/multipletextsearch.html')
 
 
 @mz.route('/single_search_ajax/', methods=['GET', 'POST'])
