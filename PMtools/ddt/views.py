@@ -22,7 +22,7 @@ def multipletextsearch():
 @ddt.route('/single_search_ajax/', methods=['GET', 'POST'])
 def single_search_ajax():
     temp = request.args.get('str')
-    print(temp.isdigit())
+    #print(temp.isdigit())
     if temp.isdigit() == True:
         items = ddtitemscode.query.filter(
             ddtitemscode.uid.ilike(
