@@ -9,4 +9,4 @@ manager.add_command(
         port=8181,
         use_debugger=True))
 if __name__ == '__main__':
-    manager.run()
+    app.run()
