@@ -32,6 +32,7 @@
     <!--[if lt IE 9]>
     <script src="/static/js/html5shiv.js"></script>
     <script src="/static/js/respond.min.js"></script>
+    <script src="/static/js/dropzone.min.js"></script>
     <![endif]-->
     <style type="text/css">
         .jqstooltip {
@@ -216,7 +217,7 @@
                                 <a href="#" class="dropdown-toggle">
                                     <i class="icon-double-angle-right"></i>
 
-                                    名單製作
+                                    名單制作&发送
                                     <b class="arrow icon-angle-down"></b>
                                 </a>
 
@@ -224,14 +225,14 @@
                                     <li>
                                         <a href="#">
                                             <i class="icon-leaf"></i>
-                                            普通名單製作
+                                            名單製作
                                         </a>
                                     </li>
 
                                     <li class="">
-                                        <a href="#" class="dropdown-toggle">
+                                        <a href="#/ddt/ddtupload/" onclick="update_div(this);">
                                             <i class="icon-leaf"></i>
-                                            特殊名單製作
+                                            名單发送
                                         </a>
 
                                     </li>
@@ -457,6 +458,8 @@
 
 
 
+
+
 			  var placeholder = $('#piechart-placeholder').css({'width':'90%' , 'min-height':'150px'});
 			  var data = [
 				{ label: "social networks",  data: 38.7, color: "#68BC31"},
@@ -650,8 +653,8 @@
                     }
                 });
             }
-          
-    </script> 
+
+    </script>
 
 </body>
 </html>

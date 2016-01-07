@@ -8,7 +8,7 @@ app = Flask(__name__, instance_relative_config=True)
 
 app.config.from_object('config.default')
 app.config.from_pyfile('config.py')
-
+app.secret_key = 'super secret key'
 
 db = SQLAlchemy(app)
 from PMtools import models
