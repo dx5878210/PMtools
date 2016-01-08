@@ -1,5 +1,5 @@
 from . import ddt
-from flask import render_template, request, jsonify,flash,redirect,url_for
+from flask import render_template, request, jsonify, flash, redirect, url_for
 from PMtools.models import ddtitemscode
 from . import text_search, process_file
 from werkzeug.utils import secure_filename
@@ -33,6 +33,11 @@ def single_search_ajax():
     items = ddtitemscode.query.filter(
         ddtitemscode.name.ilike(
             '%' + temp + '%')).all()
+    if len(items) == 0:
+        print('1')
+        items = ddtitemscode.query.filter(
+            ddtitemscode.name_id.ilike(
+                '%' + temp + '%')).all()
     items_str = ''
     for i in items:
         items_str += (str(i.name) + '\t' + i.name_id + '\n')
@@ -49,7 +54,7 @@ def prizetext_search_ajax():
 
 @ddt.route('/upload_file/', methods=['GET', 'POST'])
 def upload_file():
-    response_str=''
+    response_str = ''
     if request.method == 'POST':
         file = request.files['file']
         if file:
@@ -57,7 +62,5 @@ def upload_file():
             file_path = os.path.join(
                 os.path.dirname(__file__), 'upload', filename)
             file.save(file_path)
-            response_str=process_file.read_send(file_path)
+            response_str = process_file.read_send(file_path)
     return jsonify(result=response_str)
-
-
