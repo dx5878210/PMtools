@@ -1,3 +1,3 @@
-DEBUG = False
-SQLALCHEMY_ECHO =False
+DEBUG = True
+SQLALCHEMY_ECHO =True
 # commit
