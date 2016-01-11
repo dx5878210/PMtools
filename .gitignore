@@ -10,7 +10,7 @@ __pycache__/
 .Python
 env/
 build/
-develop-eggs/
+develop - eggs/
 dist/
 downloads/
 eggs/
@@ -20,7 +20,7 @@ lib64/
 parts/
 sdist/
 var/
-*.egg-info/
+*.egg - info/
 .installed.cfg
 *.egg
 
@@ -31,8 +31,8 @@ var/
 *.spec
 
 # Installer logs
-pip-log.txt
-pip-delete-this-directory.txt
+pip - log.txt
+pip - delete - this - directory.txt
 
 # Unit test / coverage reports
 htmlcov/
@@ -42,7 +42,7 @@ htmlcov/
 .cache
 nosetests.xml
 coverage.xml
-*,cover
+*, cover
 .hypothesis/
 
 # Translations
@@ -53,7 +53,7 @@ coverage.xml
 *.log
 
 # Sphinx documentation
-docs/_build/
+docs / _build/
 
 # PyBuilder
 target/
