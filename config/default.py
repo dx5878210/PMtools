@@ -7,3 +7,5 @@ SQLALCHEMY_MIGRATE_REPO = os.path.join(basedir, 'db_repository')
 
 DEBUG = False
 SQLALCHEMY_ECHO = False
+
+#test
