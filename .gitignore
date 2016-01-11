@@ -155,8 +155,9 @@ csx/
 # Windows Store app package directory
 AppPackages/
 
-instance/
-config.py
+instance/config.py
+instance/config.py
+
 
 
 # Visual Studio cache files
