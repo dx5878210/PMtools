@@ -4,6 +4,7 @@ from PMtools.models import ddtitemscode
 from . import text_search, process_file
 from werkzeug.utils import secure_filename
 import os
+from threading import Thread
 
 
 @ddt.route('/singlesearch/')
@@ -52,6 +53,14 @@ def prizetext_search_ajax():
     return jsonify(result=response_str)
 
 
+def async(f):
+    def wrapper(*args, **kwargs):
+        thr = Thread(target=f, args=args, kwargs=kwargs)
+        thr.start()
+    return wrapper
+
+
+@async
 @ddt.route('/upload_file/', methods=['GET', 'POST'])
 def upload_file():
     response_str = ''
