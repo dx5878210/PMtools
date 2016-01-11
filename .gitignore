@@ -155,6 +155,10 @@ csx/
 # Windows Store app package directory
 AppPackages/
 
+instance/
+config.py
+
+
 # Visual Studio cache files
 # files ending in .cache can be ignored
 *.[Cc]ache
@@ -211,4 +215,3 @@ _Pvt_Extensions/
 ModelManifest.xml
 
 #
-instance / config.py
