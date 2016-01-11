@@ -211,5 +211,4 @@ _Pvt_Extensions/
 ModelManifest.xml
 
 #
-instance/config.py
-
+instance / config.py
