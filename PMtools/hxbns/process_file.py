@@ -5,7 +5,7 @@ from io import BytesIO
 import json
 import time
 import os
-from config.default import basedir
+from config.default import imagedir
 
 
 class RequestsMethods(object):
@@ -30,11 +30,7 @@ class RequestsMethods(object):
         i = Image.open(BytesIO(login_r.content))
         i.save(
             os.path.join(
-                basedir,
-                'PMtools',
-                'static',
-                'images',
-                'hxbns',
+                imagedir,
                 'validateCode.png'),
             'png')
 
