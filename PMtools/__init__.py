@@ -12,12 +12,13 @@ app.config.setdefault('SQLALCHEMY_TRACK_MODIFICATIONS', True)
 app.secret_key = 'super secret key'
 
 handler = logging.FileHandler('log/flask.log', encoding='UTF-8')
+handler.setLevel(logging.DEBUG)
 handler.setFormatter(logging.Formatter(
     '%(asctime)s %(levelname)s: %(message)s [in %(pathname)s:%(lineno)d]'))
 app.logger.addHandler(handler)
 
-handler.setLevel(logging.DEBUG)
-app, logging.info('debug.log',)
+
+app,logging.info('debug.log',)
 
 db = SQLAlchemy(app)
 from PMtools import models
