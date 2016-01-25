@@ -22,7 +22,6 @@ app, logging.info('debug.log',)
 db = SQLAlchemy(app)
 from PMtools import models
 
-
 from .api import api
 from .mz import mz
 from .ddt import ddt

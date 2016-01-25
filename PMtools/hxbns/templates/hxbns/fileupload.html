@@ -1,0 +1,77 @@
+<div>
+		<!-- basic styles -->
+		<meta charset="utf-8" />
+		<link rel="stylesheet" href="/static/css/dropzone.css" />
+		<link rel="stylesheet" href="/static/css/ace.min.css" />
+		<script src="/static/js/dropzone.min.js"></script>
+
+
+<div class="row">
+	<div class="col-xs-5">
+		<!-- PAGE CONTENT BEGINS -->
+		<div id="dropzone">
+			<form  action="" class="dropzone">
+				<div class="fallback">
+					<input name="file" type="file" multiple="" />
+				</div>
+			</form>
+		</div><!-- PAGE CONTENT ENDS -->
+	</div><!-- /.col -->
+    <div class="col-sm-6 widget-container-span ui-sortable">
+        <div class="widget-box" style="opacity: 1; z-index: 0;">
+            <div class="widget-header">
+                <h5 class="smaller"></h5>
+
+                <div class="widget-toolbar no-border">
+                    <ul class="nav nav-tabs" id="myTab">
+                        <li class="active">
+                            <a data-toggle="tab" href="#home">輸出</a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+
+            <div class="widget-body" >
+                <div class="widget-main padding-6">
+                    <div class="tab-content">
+                        <div id="home" class="tab-pane active">
+                            <textarea class="form-control" id="result" style="height:400px"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div><!-- /.row -->
+
+		<script type="text/javascript">
+			try {
+			  $(".dropzone").dropzone({
+                  init: function (){this.on("success",function(file, response){
+                  $("#result").text(response.result);
+              })}
+              ,
+			    paramName: "file", // The name that will be used to transfer the file
+			    maxFilesize: 5, // MB
+                   url:"/ddt/upload_file/",
+				addRemoveLinks : true,
+				dictDefaultMessage :
+
+				'<span class="bigger-150 bolder"><i class="icon-caret-right red"></i> 拖动文件</span> 上传 \
+				<span class="smaller-80 grey">(or 点击)</span> <br /> \
+				<i class="upload-icon icon-cloud-upload blue icon-3x"></i>'
+			, timeout:60000,
+				dictResponseError: 'Error while uploading file!',
+				//change the previewTemplate to use Bootstrap progress bars
+				previewTemplate: "<div class=\"dz-preview dz-file-preview\">\n  <div class=\"dz-details\">\n    <div class=\"dz-filename\"><span data-dz-name></span></div>\n    <div class=\"dz-size\" data-dz-size></div>\n    <img data-dz-thumbnail />\n  </div>\n  <div class=\"progress progress-small progress-striped active\"><div class=\"progress-bar progress-bar-success\" data-dz-uploadprogress></div></div>\n  <div class=\"dz-success-mark\"><span></span></div>\n  <div class=\"dz-error-mark\"><span></span></div>\n  <div class=\"dz-error-message\"><span data-dz-errormessage></span></div>\n</div>"
+
+
+              });
+			} catch(e) {
+			  alert('Dropzone.js does not support older browsers!');
+			}
+		</script>
+    </div>

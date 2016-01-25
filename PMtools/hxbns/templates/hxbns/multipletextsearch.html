@@ -1,0 +1,97 @@
+﻿<div>
+        <script type="text/javascript">
+				try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+        </script>
+        <div class="main-container-inner">
+            <div class="main-content">
+                <div class="page-content">
+                    <div class="page-header">
+                        <h1>
+                            幻想编年史codetable制作
+
+                        </h1>
+                    </div><!-- /.page-header -->
+                    <div class="row">
+
+                        <div class="col-sm-12 widget-container-span ui-sortable">
+
+                            <div class="widget-box" style="opacity: 1; z-index: 0;">
+                                <div class="widget-header">
+                                    <h5 class="smaller">Tips：去官网copy活动文本吧</h5>
+
+                                    <div class="widget-toolbar no-border">
+                                        <ul class="nav nav-tabs" id="myTab">
+                                            <li class="active">
+                                                <a data-toggle="tab" href="#home">輸入</a>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div class="widget-body">
+                                    <div class="widget-main padding-6">
+                                        <div class="tab-content">
+                                            <div id="home" class="tab-pane active">
+                                                <textarea class="form-control" id="input_area" onkeyup="delay()" style="height:400px"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 widget-container-span ui-sortable">
+                            <div class="widget-box" style="opacity: 1; z-index: 0;">
+                                <div class="widget-header">
+                                    <h5 class="smaller"></h5>
+
+                                    <div class="widget-toolbar no-border">
+                                        <ul class="nav nav-tabs" id="myTab">
+                                            <li class="active">
+                                                <a data-toggle="tab" href="#home">輸出</a>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div class="widget-body" >
+                                    <div class="widget-main padding-6">
+                                        <div class="tab-content">
+                                            <div id="home" class="tab-pane active">
+                                                <textarea class="form-control" id="result" style="height:400px"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div><!-- /.page-content -->
+            </div><!-- /.main-content -->
+            <!-- /#ace-settings-container -->
+        </div>
+    <script type="text/javascript">
+        var timer 
+        function delay() {
+            clearTimeout(timer);
+            timer = setTimeout("showstr()", 1000);
+
+        }
+
+        function showstr()  {
+            $.getJSON('/hxbns/prizetext_search_ajax',{
+                str:$('textarea[id="input_area"]').val()
+            },function(data){
+                $("#result").text(data.result);
+            });
+            return false;
+            };
+
+    </script> 
+    </div>
+    <!-- basic scripts -->
+    <!--[if !IE]> -->
