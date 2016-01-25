@@ -119,14 +119,12 @@ def read_send(file_path):
                 returnstr += '输入参数有误'
                 # print('输入参数有误')
         results = []
-        starttime = time.time()
         pool_size = multiprocessing.cpu_count()
         print(pool_size)
         pool = multiprocessing.Pool(pool_size)  # 设置线程池大小
         results = pool.map(requestlist_post, requestlist)
         for restr in results:
             returnstr = returnstr + restr
-        print(time.time() - starttime)
     return returnstr
 
 
@@ -143,13 +141,14 @@ def requestlist_post(requesttuple):
     else:
         returnstr = str(requesttuple[1]) + '区奖励提交失败' + '\n'
         #print(str(serverid) + '区奖励提交失败')
-    commited = rm.commited_id()
-    commited_list = [
-        x for x in commited.split(',') if x != '']
-    print(requesttuple[1])
-    different_list = [x for x in requesttuple[0][
-        'receiver'].split('\n') if x not in commited_list]
-    for x in different_list:
-        returnstr = returnstr + x + '\n'
-    print(different_list)
+    if re.match(r'\w{8}-\w{4}-\w{4}-\w{4}-\w{12}', requesttuple[0]['receiver_id']) is None:
+        commited = rm.commited_id()
+        commited_list = [
+            x for x in commited.split(',') if x != '']
+        print(requesttuple[1])
+        different_list = [x for x in requesttuple[0][
+            'receiver'].split('\n') if x not in commited_list]
+        for x in different_list:
+            returnstr = returnstr + x + '\n'
+        print(different_list)
     return returnstr
