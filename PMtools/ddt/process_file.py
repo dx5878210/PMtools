@@ -125,6 +125,8 @@ def read_send(file_path):
         results = pool.map(requestlist_post, requestlist)
         for restr in results:
             returnstr = returnstr + restr
+        pool.close()
+        pool.join()
     return returnstr
 
 
@@ -141,7 +143,8 @@ def requestlist_post(requesttuple):
     else:
         returnstr = str(requesttuple[1]) + '区奖励提交失败' + '\n'
         #print(str(serverid) + '区奖励提交失败')
-    if re.match(r'\w{8}-\w{4}-\w{4}-\w{4}-\w{12}', requesttuple[0]['receiver_id']) is None:
+    if re.match(r'\w{8}-\w{4}-\w{4}-\w{4}-\w{12}',
+                requesttuple[0]['receiver_id']) is None:
         commited = rm.commited_id()
         commited_list = [
             x for x in commited.split(',') if x != '']
