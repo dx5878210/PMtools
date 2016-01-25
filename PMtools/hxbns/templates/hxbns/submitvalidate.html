@@ -1,8 +1,20 @@
 <div>
     <meta charset="UTF-8">
-    <img alt="140x140" src="/static/images/hxbns/validateCode.png"  onload="this.src=this.src+'?'+new Date().getTime();">
-    <input type="text" id="inputtext" placeholder="输入验证码" class="input-lg" >
-    <button class="btn btn-red">提交</button>
+    <img alt="140x140" src="/static/images/hxbns/validateCode.png" onclick="this.src=this.src+'?'+new Date().getTime();" onload="this.src=this.src+'?'+new Date().getTime();">
+    <div class="row">
+        <div class="col-xs-12 col-sm-8">
+            <div class="input-group">
+                <input type="text" id="inputtext" placeholder="输入验证码" class="form-control search-query" >
+                <span class="input-group-btn">
+                    <button class="btn btn-purple btn-sm" type="button">
+                        确认
+                        <i class=" icon-on-right bigger-110"></i>
+                    </button>
+                </span>
+            </div>
+        </div>
+    </div>
+
 </div>
 
 
