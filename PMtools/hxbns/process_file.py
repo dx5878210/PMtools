@@ -28,7 +28,15 @@ class RequestsMethods(object):
         validatecode = 'http://tw-hxbns.gm.funcell123.com/index.php?r=site/verify/t/1452511909'
         login_r = requests.get(validatecode, cookies=self.cookie)
         i = Image.open(BytesIO(login_r.content))
-        i.save(os.path.join(basedir,'PMtools','static','images','hxbns','validateCode.png'), 'png')
+        i.save(
+            os.path.join(
+                basedir,
+                'PMtools',
+                'static',
+                'images',
+                'hxbns',
+                'validateCode.png'),
+            'png')
 
     def login(self):
         verify_value = input()
@@ -43,7 +51,6 @@ class RequestsMethods(object):
             cookies=self.cookie)
         login_r.encoding = 'utf-8'
         # print(login_r.text)
-
 
     def getcookie(self):
         return self.cookie

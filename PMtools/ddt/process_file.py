@@ -95,7 +95,9 @@ def read_send(file_path):
                             receiver_str = receiver_str + i + '\n'
                         if re.match(r'\w{8}-\w{4}-\w{4}-\w{4}-\w{12}', receiver_str):
                             post_dict['receiver_id'] = receiver_str
+                            post_dict['receiver'] = ''
                         else:
+                            post_dict['receiver_id'] = ''
                             post_dict['receiver'] = receiver_str
                     else:
                         post_dict['to_all'] = '1'
