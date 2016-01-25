@@ -1,15 +1,18 @@
 <component name="ProjectDictionaryState">
   <dictionary name="xiaobai">
     <words>
+      <w>basepath</w>
       <w>ddtupload</w>
       <w>fileupload</w>
       <w>idnex</w>
+      <w>isbind</w>
       <w>loadmodel</w>
       <w>multiplesearch</w>
       <w>multipletextsearch</w>
       <w>prizetext</w>
       <w>returnstr</w>
       <w>singlesearch</w>
+      <w>validatepath</w>
     </words>
   </dictionary>
 </component>

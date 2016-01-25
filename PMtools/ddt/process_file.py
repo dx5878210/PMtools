@@ -1,6 +1,8 @@
 import requests
 from bs4 import BeautifulSoup
-
+import multiprocessing
+import time
+import re
 
 class RequestsMethods(object):
 
@@ -62,13 +64,9 @@ class RequestsMethods(object):
 
 
 def read_send(file_path):
-    rm = RequestsMethods()
-    rm.get_cookie()
-    rm.login()
-    rm.select_server()
-
     with open(file_path, 'r', encoding='utf-8') as f:
         returnstr = ''
+        requestlist=[]
         for line in f:
             line = line.strip()
             if len(line.split('=')) == 2:
@@ -95,33 +93,19 @@ def read_send(file_path):
                         receiver_str = ''
                         for i in receiver_list:
                             receiver_str = receiver_str + i + '\n'
-                        post_dict['receiver'] = receiver_str
+                        if re.match(r'\w{8}-\w{4}-\w{4}-\w{4}-\w{12}', receiver_str):
+                            post_dict['receiver_id'] = receiver_str
+                        else:
+                            post_dict['receiver'] = receiver_str
                     else:
                         post_dict['to_all'] = '1'
                         post_dict['receiver'] = ''
-                    post_dict['receiver_id'] = ''
+                        post_dict['receiver_id'] = ''
+
                     post_dict['add_att'] = '1'
                     post_dict['next'] = ''
                     for serverid in serverid_list:
-                        rm.select_server(serverid)
-                        response = rm.send_prize(post_dict)
-                        if response == "<script>alert('待审批邮件添加成功!');</script>":
-                            returnstr = returnstr + \
-                                str(serverid) + '区奖励提交完毕' + '\n'
-                            #print(str(serverid) + '区奖励提交完毕')
-                        else:
-                            returnstr = returnstr + \
-                                str(serverid) + '区奖励提交失败' + '\n'
-                            #print(str(serverid) + '区奖励提交失败')
-                        commited = rm.commited_id()
-                        commited_list = [
-                            x for x in commited.split(',') if x != '']
-                        different_list = [
-                            x for x in receiver_list if x not in commited_list]
-                        for x in different_list:
-                            returnstr = returnstr + x + '\n'
-                        # print(different_list)
-
+                        requestlist.append((post_dict,serverid))
                     receiver_list = []
                 else:
                     receiver_list.append(line)
@@ -129,4 +113,39 @@ def read_send(file_path):
             else:
                 returnstr += '输入参数有误'
                 # print('输入参数有误')
+        results = []
+        starttime=time.time()
+        pool_size = multiprocessing.cpu_count()
+        print(pool_size)
+        pool = multiprocessing.Pool(pool_size)#设置线程池大小
+        results = pool.map(requestlist_post, requestlist)
+        for restr in results:
+            returnstr = returnstr+restr
+        print(time.time()-starttime)
     return returnstr
+
+
+def requestlist_post(requesttuple):
+    rm = RequestsMethods()
+    rm.get_cookie()
+    rm.login()
+    rm.select_server(requesttuple[1])
+
+    response = rm.send_prize(requesttuple[0])
+    if response == "<script>alert('待审批邮件添加成功!');</script>":
+        returnstr =str(requesttuple[1]) + '区奖励提交完毕' + '\n'
+        #print(str(serverid) + '区奖励提交完毕')
+    else:
+        returnstr = str(requesttuple[1]) + '区奖励提交失败' + '\n'
+        #print(str(serverid) + '区奖励提交失败')
+    commited = rm.commited_id()
+    commited_list = [
+        x for x in commited.split(',') if x != '']
+    print(requesttuple[1])
+    different_list = [
+        x for x in requesttuple[0]['receiver'].split('\n') if x not in commited_list]
+    for x in different_list:
+        returnstr = returnstr + x + '\n'
+    print(different_list)
+    return returnstr
+

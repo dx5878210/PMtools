@@ -179,6 +179,61 @@
                             <span class="menu-text">Home</span>
                         </a>
                     </li>
+
+                    <li>
+                        <a href="#" class="dropdown-toggle">
+                            <i class="icon-file-alt"></i>
+                            <span class="menu-text">幻想编年史</span>
+
+                            <b class="arrow icon-angle-down"></b>
+                        </a>
+
+                        <ul class="submenu" style="display: none;">
+
+                            <li class="">
+                                <a href="#" class="dropdown-toggle">
+                                    <i class="icon-double-angle-right"></i>
+
+                                    道具查詢
+                                    <b class="arrow icon-angle-down"></b>
+                                </a>
+
+                                <ul class="submenu" style="display: none;">
+                                    <li>
+                                        <a href="#/hxbns/singlesearch/" onclick="update_div(this);">
+                                            <i class="icon-leaf"></i>
+                                            單個查詢
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#/hxbns/multipletextsearch/" onclick="update_div(this);">
+                                            <i class="icon-leaf"></i>
+                                            codetable表查询
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </li>
+                            <li class="">
+                                <a href="#" class="dropdown-toggle">
+                                    <i class="icon-double-angle-right"></i>
+
+                                    名單制作&发送
+                                    <b class="arrow icon-angle-down"></b>
+                                </a>
+
+                                <ul class="submenu" style="display: none;">
+                                    <li class="">
+                                        <a href="#/hxbns/getvalidateCode/" onclick="update_div(this);">
+                                            <i class="icon-leaf"></i>
+                                            名單发送
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+
                     <li>
                         <a href="#" class="dropdown-toggle">
                             <i class="icon-file-alt"></i>
@@ -222,13 +277,6 @@
                                 </a>
 
                                 <ul class="submenu" style="display: none;">
-                                    <li>
-                                        <a href="#">
-                                            <i class="icon-leaf"></i>
-                                            名單製作
-                                        </a>
-                                    </li>
-
                                     <li class="">
                                         <a href="#/ddt/ddtupload/" onclick="update_div(this);">
                                             <i class="icon-leaf"></i>
@@ -454,10 +502,6 @@
 					var barColor = !$box.hasClass('infobox-dark') ? $box.css('color') : '#FFF';
 					$(this).sparkline('html', {tagValuesAttribute:'data-values', type: 'bar', barColor: barColor , chartRangeMin:$(this).data('min') || 0} );
 				});
-
-
-
-
 
 
 			  var placeholder = $('#piechart-placeholder').css({'width':'90%' , 'min-height':'150px'});
