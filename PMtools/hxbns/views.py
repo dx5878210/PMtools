@@ -1,11 +1,23 @@
 from . import hxbns
-from flask import render_template, request, jsonify, flash, redirect, url_for,g
+from flask import render_template, request, jsonify, make_response, redirect, url_for,g
 from PMtools.models import hxbnsitemscode
 from . import text_search, process_file
 from werkzeug.utils import secure_filename
 import os
 from threading import Thread
+from functools import  wraps
 
+
+def allow_cross_domain(func):
+    @wraps(func)
+    def wrapper_func(*args,**kwargs):
+        rst = make_response(func(*args, **kwargs))
+        rst.headers['Access-Control-Allow-Origin'] = '*'
+        rst.headers['Access-Control-Allow-Methods'] = 'PUT,GET,POST,DELETE'
+        allow_headers = "Referer,Accept,Origin,User-Agent"
+        rst.headers['Access-Control-Allow-Headers'] = allow_headers
+        return rst
+    return wrapper_func
 
 @hxbns.route('/singlesearch/')
 def singlesearch():
@@ -18,6 +30,7 @@ def multipletextsearch():
 
 
 @hxbns.route('/getvalidateCode/')
+@allow_cross_domain
 def getvalidateCode():
     g.rm = process_file.RequestsMethods()
     g.rm.get_cookie()
@@ -82,3 +95,7 @@ def upload_file():
             file.save(file_path)
             response_str = process_file.read_send(file_path)
     return jsonify(result=response_str)
+
+
+
+
