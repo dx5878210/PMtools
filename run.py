@@ -1,6 +1,6 @@
 from PMtools import app
-from flask.ext.script import Manager,Server
-#hooks test1
+from flask.ext.script import Manager, Server
+# hooks test1
 manager = Manager(app)
 manager.add_command(
     "runserver",

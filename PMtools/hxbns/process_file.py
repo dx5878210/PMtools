@@ -44,6 +44,7 @@ class RequestsMethods(object):
         login_r.encoding = 'utf-8'
         # print(login_r.text)
 
+
     def getcookie(self):
         return self.cookie
 
