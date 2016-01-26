@@ -24,6 +24,7 @@
         $.ajax({
             type: "get",
             url: url,
+            dataType:'jsonp',
             success: function (dates) {
                 // alert(dates)
                 // 要刷新的div
