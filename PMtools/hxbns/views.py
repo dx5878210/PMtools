@@ -31,7 +31,7 @@ def multipletextsearch():
 
 
 @hxbns.route('/getvalidateCode/')
-@allow_cross_domain
+#@allow_cross_domain
 def getvalidateCode():
     rm = process_file.RequestsMethods()
     rm.get_cookie()
