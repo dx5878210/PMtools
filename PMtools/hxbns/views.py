@@ -8,16 +8,16 @@ from threading import Thread
 from functools import wraps
 
 
-def allow_cross_domain(func):
-    @wraps(func)
-    def wrapper_func(*args, **kwargs):
-        rst = make_response(func(*args, **kwargs))
-        rst.headers['Access-Control-Allow-Origin'] = '*'
-        rst.headers['Access-Control-Allow-Methods'] = 'PUT,GET,POST,DELETE'
-        allow_headers = "Referer,Accept,Origin,User-Agent"
-        rst.headers['Access-Control-Allow-Headers'] = allow_headers
-        return rst
-    return wrapper_func
+# def allow_cross_domain(func):
+#     @wraps(func)
+#     def wrapper_func(*args, **kwargs):
+#         rst = make_response(func(*args, **kwargs))
+#         rst.headers['Access-Control-Allow-Origin'] = '*'
+#         rst.headers['Access-Control-Allow-Methods'] = 'PUT,GET,POST,DELETE'
+#         allow_headers = "Referer,Accept,Origin,User-Agent"
+#         rst.headers['Access-Control-Allow-Headers'] = allow_headers
+#         return rst
+#     return wrapper_func
 
 
 @hxbns.route('/singlesearch/')
@@ -31,7 +31,6 @@ def multipletextsearch():
 
 
 @hxbns.route('/getvalidateCode/')
-#@allow_cross_domain
 def getvalidateCode():
     rm = process_file.RequestsMethods()
     rm.get_cookie()
