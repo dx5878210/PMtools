@@ -7,32 +7,32 @@
                 <div class = "input-group" >
                     <input type = "text" id = "inputtext" placeholder = "输入验证码" class = "form-control search-query" >
                     <span class = "input-group-btn" >
-                        <button class = "btn btn-purple btn-sm" type = "button" >
+                        <button class = "btn btn-purple btn-sm" type = "button">
                             确认
-                            <i class = " icon-on-right bigger-110" > < / i >
-                        < / button >
-                    < / span >
-                < / div >
-            < / div >
-        < / div >
-    < / form >
-< / div >
+                            <i class = " icon-on-right bigger-110" > </i>
+                         </button>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
 
-    <script type = "text/javascript" >
-        function update_div(obj) {
-            url = '/hxbns/getvalidateCode/'
-            $.ajax({
-                type: "get",
-                url: url,
-                timeout:10000,
-                success: function(dates){
-                    // alert(dates)
-                    // 要刷新的div
-                },
-                error: function() {
-                    // alert("失败，请稍后再试！")
-                }
-            })
-            document.getElementById('vlc').src = "/static/images/hxbns/validateCode.png?" + Math.random()
-        }
-    </script >
+<script type = "text/javascript" >
+    function update_div(obj) {
+        url = '/hxbns/getvalidateCode/'
+        $.ajax({
+            type: "get",
+            url: url,
+            timeout: 10000,
+            success: function (dates) {
+                // alert(dates)
+                // 要刷新的div
+            },
+            error: function () {
+                // alert("失败，请稍后再试！")
+            }
+        });
+        document.getElementById('vlc').src = "/static/images/hxbns/validateCode.png?" + Math.random()
+    }
+</script >
