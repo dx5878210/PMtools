@@ -36,7 +36,6 @@ def getvalidateCode():
     g.rm = process_file.RequestsMethods()
     g.rm.get_cookie()
     g.rm.get_validateCode()
-
     return render_template('hxbns/submitvalidate.html')
 
 
