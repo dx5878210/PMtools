@@ -1,4 +1,4 @@
-DEBUG = True
-SQLALCHEMY_ECHO = True
+DEBUG = False
+SQLALCHEMY_ECHO = False
 # test
 
