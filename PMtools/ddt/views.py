@@ -60,7 +60,6 @@ def async(f):
     return wrapper
 
 
-@async
 @ddt.route('/upload_file/', methods=['GET', 'POST'])
 def upload_file():
     response_str = ''
