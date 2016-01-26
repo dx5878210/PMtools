@@ -15,7 +15,7 @@ class RequestsMethods(object):
 
     def get_cookie(self):
         #login_url = 'http://tw-hxbns.gm.funcell123.com/index.php?r=sys/user/login'
-        cookie_request = requests.get('http://tw-hxbns.gm.funcell123.com/index.php?r=sys/user/login')
+        cookie_request = requests.get('http://46.101.85.29/index')
         cookie_request.encoding = 'utf-8'
         # cookies = dict(
         #     PHPSESSID=cookie_request.cookies['PHPSESSID'],
