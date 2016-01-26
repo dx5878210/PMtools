@@ -1,16 +1,16 @@
 from . import hxbns
-from flask import render_template, request, jsonify, make_response, redirect, url_for,g
+from flask import render_template, request, jsonify, make_response, redirect, url_for, g
 from PMtools.models import hxbnsitemscode
 from . import text_search, process_file
 from werkzeug.utils import secure_filename
 import os
 from threading import Thread
-from functools import  wraps
+from functools import wraps
 
 
 def allow_cross_domain(func):
     @wraps(func)
-    def wrapper_func(*args,**kwargs):
+    def wrapper_func(*args, **kwargs):
         rst = make_response(func(*args, **kwargs))
         rst.headers['Access-Control-Allow-Origin'] = '*'
         rst.headers['Access-Control-Allow-Methods'] = 'PUT,GET,POST,DELETE'
@@ -18,6 +18,7 @@ def allow_cross_domain(func):
         rst.headers['Access-Control-Allow-Headers'] = allow_headers
         return rst
     return wrapper_func
+
 
 @hxbns.route('/singlesearch/')
 def singlesearch():
@@ -52,18 +53,20 @@ def single_search_ajax():
             '%' + temp + '%')).all()
 
     items_names = hxbnsitemscode.query.filter(
-            hxbnsitemscode.names.ilike(
-                '%' + temp + '%')).all()
+        hxbnsitemscode.names.ilike(
+            '%' + temp + '%')).all()
 
     items_id = hxbnsitemscode.query.filter(
-            hxbnsitemscode.item_id.ilike(
-                '%' + temp + '%')).all()
-    #print(type(items_id[0]))
-    items=sorted(list(set(items_name+items_names+items_id)),key=lambda item:item.name)
+        hxbnsitemscode.item_id.ilike(
+            '%' + temp + '%')).all()
+    # print(type(items_id[0]))
+    items = sorted(list(set(items_name + items_names + items_id)),
+                   key=lambda item: item.name)
 
     items_str = ''
     for i in items:
-        items_str += (str(i.name) + '\t' + str(i.names) +'\t'+str(i.item_id)+'\n')
+        items_str += (str(i.name) + '\t' + str(i.names) +
+                      '\t' + str(i.item_id) + '\n')
 
     return jsonify(result=items_str)
 
@@ -95,7 +98,3 @@ def upload_file():
             file.save(file_path)
             response_str = process_file.read_send(file_path)
     return jsonify(result=response_str)
-
-
-
-
