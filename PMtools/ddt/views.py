@@ -73,4 +73,4 @@ def upload_file():
             file.save(file_path)
             response_str = process_file.read_send(file_path)
         print (response_str)
-    return jsonify(result=response_str)
+    return response_str
