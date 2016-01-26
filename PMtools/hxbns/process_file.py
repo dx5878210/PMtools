@@ -17,10 +17,10 @@ class RequestsMethods(object):
         #login_url = 'http://tw-hxbns.gm.funcell123.com/index.php?r=sys/user/login'
         cookie_request = requests.get('http://tw-hxbns.gm.funcell123.com/index.php?r=sys/user/login')
         cookie_request.encoding = 'utf-8'
-        cookies = dict(
-            PHPSESSID=cookie_request.cookies['PHPSESSID'],
-            dwz_theme=cookie_request.cookies['dwz_theme'],
-            GAME_ID='173')
+        # cookies = dict(
+        #     PHPSESSID=cookie_request.cookies['PHPSESSID'],
+        #     dwz_theme=cookie_request.cookies['dwz_theme'],
+        #     GAME_ID='173')
         # print(type(cookie_request.cookies['PHPSESSID']))
         #self.cookie = cookies
 
