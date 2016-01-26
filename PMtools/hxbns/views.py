@@ -34,8 +34,8 @@ def multipletextsearch():
 @allow_cross_domain
 def getvalidateCode():
     rm = process_file.RequestsMethods()
-    rm.get_cookie()
-    rm.get_validateCode()
+    #rm.get_cookie()
+    #rm.get_validateCode()
     return render_template('hxbns/submitvalidate.html')
 
 

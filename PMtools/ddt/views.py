@@ -71,5 +71,5 @@ def upload_file():
                 os.path.dirname(__file__), 'upload', filename)
             file.save(file_path)
             response_str = process_file.read_send(file_path)
-        print (response_str)
+        #print (response_str)
     return jsonify(result=response_str)
