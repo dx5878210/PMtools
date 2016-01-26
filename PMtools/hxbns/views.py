@@ -35,6 +35,13 @@ def getvalidateCode():
 
     return render_template('hxbns/submitvalidate.html')
 
+@hxbns.route('/changevlc/')
+def changevlc():
+    rm=process_file.RequestsMethods()
+    rm.get_cookie()
+    rm.get_validateCode()
+    return '1'
+
 
 @hxbns.route('/hxbnsupload/')
 def ddtupload():
