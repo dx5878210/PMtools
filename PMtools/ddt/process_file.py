@@ -118,10 +118,8 @@ def read_send(file_path):
             else:
                 returnstr += '输入参数有误'
                 # print('输入参数有误')
-        results = []
         pool_size = multiprocessing.cpu_count()
-        print(pool_size)
-        pool = multiprocessing.Pool(pool_size)  # 设置线程池大小
+        pool = multiprocessing.Pool(4)  # 设置线程池大小
         results = pool.map(requestlist_post, requestlist)
         for restr in results:
             returnstr = returnstr + restr
