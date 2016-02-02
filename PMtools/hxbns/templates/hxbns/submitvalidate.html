@@ -3,12 +3,13 @@
 
     <form class = "form-search" >
         <div class = "row" >
-            <div class = "col-xs-12 col-sm-8" >
+            <div class = "col-xs-8 col-sm-8" >
+                <img alt = "140x140" src = "" id = "vlc"   onclick = "update_div(this);" />
                 <div class = "input-group" >
-                    <img alt = "140x140" src = "" id = "vlc"   onclick = "update_div(this);" />
+
                     <input type = "text" id = "inputtext" placeholder = "输入验证码" class = "form-control search-query" >
                     <span class = "input-group-btn" >
-                        <button class = "btn btn-purple btn-sm" type = "button">
+                        <button class = "btn btn-purple btn-sm" type = "button" onclick="submitvlc();">
                             确认
                             <i class = " icon-on-right bigger-110" > </i>
                          </button>
@@ -25,15 +26,18 @@
         $.ajax({
             type: "get",
             url: url,
-            dataType:'jsonp',
+            dataType:'json',
             success: function (dates) {
-                // alert(dates)
-                // 要刷新的div
             },
             error: function () {
-                // alert("失败，请稍后再试！")
             }
         });
         document.getElementById('vlc').src = "/static/images/hxbns/validateCode.png?" + Math.random()
+    }
+
+    function submitvlc() {
+        $.getJSON('/hxbns/postvlc',{
+                vlc:$('input[id="inputtext"]').val()
+            });
     }
 </script >

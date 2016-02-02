@@ -14,15 +14,14 @@ class RequestsMethods(object):
         self.cookie = dict(PHPSESSID='')
 
     def get_cookie(self):
-        #login_url = 'http://tw-hxbns.gm.funcell123.com/index.php?r=sys/user/login'
         cookie_request = requests.get('http://tw-hxbns.gm.funcell123.com/index.php')
         cookie_request.encoding = 'utf-8'
-        # cookies = dict(
-        #     PHPSESSID=cookie_request.cookies['PHPSESSID'],
-        #     dwz_theme=cookie_request.cookies['dwz_theme'],
-        #     GAME_ID='173')
-        # print(type(cookie_request.cookies['PHPSESSID']))
-        #self.cookie = cookies
+        cookies = dict(
+            PHPSESSID=cookie_request.cookies['PHPSESSID'],
+            dwz_theme=cookie_request.cookies['dwz_theme'],
+            GAME_ID='173')
+        print(cookie_request.cookies['PHPSESSID'])
+        self.cookie = cookies
 
     def get_validateCode(self):
         validatecode = 'http://tw-hxbns.gm.funcell123.com/index.php?r=site/verify/t/1452511909'
@@ -33,6 +32,7 @@ class RequestsMethods(object):
                 imagedir,
                 'validateCode.png'),
             'png')
+        print (self.cookie)
 
     def login(self):
         verify_value = input()
@@ -46,7 +46,7 @@ class RequestsMethods(object):
             data=login_upload,
             cookies=self.cookie)
         login_r.encoding = 'utf-8'
-        # print(login_r.text)
+        print(self.cookie)
 
     def getcookie(self):
         return self.cookie

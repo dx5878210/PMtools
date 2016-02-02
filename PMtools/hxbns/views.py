@@ -1,5 +1,5 @@
 from . import hxbns
-from flask import render_template, request, jsonify, make_response, redirect, url_for, g
+from flask import render_template, request, jsonify, current_app, redirect, url_for, g,_request_ctx_stack
 from PMtools.models import hxbnsitemscode
 from . import text_search, process_file
 from werkzeug.utils import secure_filename
@@ -32,20 +32,37 @@ def multipletextsearch():
 
 @hxbns.route('/getvalidateCode/')
 def getvalidateCode():
-
     return render_template('hxbns/submitvalidate.html')
+
 
 @hxbns.route('/changevlc/')
 def changevlc():
-    rm=process_file.RequestsMethods()
-    rm.get_cookie()
-    rm.get_validateCode()
+
+    print(dir(g))
+    print(id(request))
     return '1'
 
 
+@hxbns.before_request
+def do():
+    g.rm = process_file.RequestsMethods()
+    g.rm.get_cookie()
+    g.rm.get_validateCode()
+    print(dir(g))
+
 @hxbns.route('/hxbnsupload/')
-def ddtupload():
+def hxbnsupload():
     return render_template('hxbns/fileupload.html')
+
+
+@hxbns.route('/postvlc/',methods=['GET', 'POST'])
+def postvlc():
+    validateCode = request.args.get('vlc')###存在bug不能使用request
+    #print(validateCode)
+    print(dir(g))
+    print(id(request))
+    return validateCode
+
 
 
 @hxbns.route('/single_search_ajax/', methods=['GET', 'POST'])
