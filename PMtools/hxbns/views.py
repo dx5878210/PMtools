@@ -43,13 +43,6 @@ def changevlc():
     return '1'
 
 
-@hxbns.before_request
-def do():
-    g.rm = process_file.RequestsMethods()
-    g.rm.get_cookie()
-    g.rm.get_validateCode()
-    print(dir(g))
-
 @hxbns.route('/hxbnsupload/')
 def hxbnsupload():
     return render_template('hxbns/fileupload.html')
