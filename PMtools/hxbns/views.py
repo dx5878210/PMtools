@@ -1,5 +1,5 @@
 from . import hxbns
-from flask import render_template, request, jsonify, current_app, redirect, url_for, g,_request_ctx_stack
+from flask import render_template, request, jsonify, current_app, redirect, url_for, g,session
 from PMtools.models import hxbnsitemscode
 from . import text_search, process_file
 from werkzeug.utils import secure_filename
@@ -37,11 +37,12 @@ def getvalidateCode():
 
 @hxbns.route('/changevlc/')
 def changevlc():
-
+    rm = process_file.RequestsMethods()
+    rm.get_cookie()
+    rm.get_validateCode()
     print(dir(g))
     print(id(request))
     return '1'
-
 
 @hxbns.route('/hxbnsupload/')
 def hxbnsupload():
