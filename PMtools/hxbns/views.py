@@ -62,7 +62,6 @@ def postvlc():
     else:
         print("登录失败")
         flash('You were successfully logged in')
-        session.clear()
         #return render_template('hxbns/submitvalidate.html')
     return str(validateCode)
 
