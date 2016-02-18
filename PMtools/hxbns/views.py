@@ -56,9 +56,9 @@ def postvlc():
     rm = process_file.RequestsMethods()
     rm.setcookie(session['user'])
     # print (session)
-    # if rm.login(validateCode):
-    #     print("登录成功")
-    #     return render_template('hxbns/fileupload.html')
+    if rm.login(validateCode):
+        print("登录成功")
+        return render_template('hxbns/fileupload.html')
     # else:
     #     print("登录失败")
     #     flash('You were successfully logged in')
