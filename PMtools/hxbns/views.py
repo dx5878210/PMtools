@@ -54,7 +54,7 @@ def hxbnsupload():
 def postvlc():
     validateCode = request.args.get('vlc')###存在bug不能使用request
     rm = process_file.RequestsMethods()
-    #rm.setcookie(session['user'])
+    rm.setcookie(session['user'])
     # print (session)
     # if rm.login(validateCode):
     #     print("登录成功")
