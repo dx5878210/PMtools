@@ -1,4 +1,5 @@
 from flask import Flask
+import os
 
 import logging
 from config.default import basedir
@@ -9,7 +10,7 @@ app = Flask(__name__, instance_relative_config=True)
 app.config.from_object('config.default')
 app.config.from_pyfile('config.py')
 app.config.setdefault('SQLALCHEMY_TRACK_MODIFICATIONS', True)
-app.secret_key = 'super secret key'
+app.secret_key = os.urandom(32)
 
 handler = logging.FileHandler('log/flask.log', encoding='UTF-8')
 handler.setLevel(logging.DEBUG)

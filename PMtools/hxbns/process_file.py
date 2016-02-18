@@ -21,6 +21,7 @@ class RequestsMethods(object):
             dwz_theme=cookie_request.cookies['dwz_theme'],
             GAME_ID='173')
         print(cookie_request.cookies['PHPSESSID'])
+
         self.cookie = cookies
 
     def get_validateCode(self):
@@ -32,10 +33,10 @@ class RequestsMethods(object):
                 imagedir,
                 'validateCode.png'),
             'png')
-        print (self.cookie)
+        #print (self.cookie)
 
-    def login(self):
-        verify_value = input()
+    def login(self, verify_value):
+        verify_value = verify_value
         login_upload = {
             'account': 'efun_service',
             'password': 'efun_service',
@@ -45,11 +46,19 @@ class RequestsMethods(object):
             login_url,
             data=login_upload,
             cookies=self.cookie)
-        login_r.encoding = 'utf-8'
-        print(self.cookie)
+        soup = BeautifulSoup(login_r.text, "html.parser")
+        print(login_r.text)
+        #print(soup.find_all(id='validateCode'))
+        if len(soup.find_all(id='validateCode')) != 0:
+            return False
+        else:
+            return True
 
     def getcookie(self):
         return self.cookie
+
+    def setcookie(self, dis):
+        self.cookie = dis
 
     def add_items(self, post_data):
         timestamp = str(int(time.time() * 1000))
@@ -61,8 +70,6 @@ class RequestsMethods(object):
         )
         add_respones.json()
         r_json = json.loads(add_respones.text)
-        for a in r_json.keys():
-            print(r_json[a])
         if r_json['statusCode'] == 200:
             return 'success'
         elif r_json['statusCode'] == 300:
