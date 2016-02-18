@@ -41,7 +41,7 @@ def changevlc():
     rm.get_cookie()
     rm.get_validateCode()
     session['user'] = rm.cookie
-    #print(session)
+    print(session)
     return 'succuess'
 
 
@@ -58,12 +58,12 @@ def postvlc():
     print(session)
     if rm.login(validateCode):
         print("登录成功")
-        return render_template('hxbns/fileupload.html')
+        #return render_template('hxbns/fileupload.html')
     else:
         print("登录失败")
         flash('You were successfully logged in')
         session.clear()
-        return render_template('hxbns/submitvalidate.html')
+        #return render_template('hxbns/submitvalidate.html')
     return str(validateCode)
 
 
