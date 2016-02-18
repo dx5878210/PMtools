@@ -47,8 +47,8 @@ class RequestsMethods(object):
             data=login_upload,
             cookies=self.cookie)
         soup = BeautifulSoup(login_r.text, "html.parser")
-        print(login_r.text)
-        #print(soup.find_all(id='validateCode'))
+        print(self.cookie)
+        print(soup.find_all(id='validateCode'))
         if len(soup.find_all(id='validateCode')) != 0:
             return False
         else:

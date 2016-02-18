@@ -38,8 +38,8 @@
     function submitvlc() {
 
         $.ajax({
-                    type : "POST",
-                    url :'/hxbns/postvlc',
+                    type : "GET",
+                    url :'/hxbns/postvlc/',
                     data :{
                         vlc:$('input[id="inputtext"]').val()
                     },
