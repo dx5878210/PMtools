@@ -36,7 +36,6 @@ class RequestsMethods(object):
         #print (self.cookie)
 
     def login(self, verify_value):
-        print(verify_value)
         verify_value = verify_value
         login_upload = {
             'account': 'efun_service',
@@ -49,7 +48,7 @@ class RequestsMethods(object):
             cookies=self.cookie)
         soup = BeautifulSoup(login_r.text, "html.parser")
         #print(login_r.text)
-        print(soup.find_all(id='validateCode'))
+        #print(soup.find_all(id='validateCode'))
         if len(soup.find_all(id='validateCode')) != 0:
             return False
         else:
