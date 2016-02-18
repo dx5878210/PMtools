@@ -19,7 +19,7 @@ handler.setFormatter(logging.Formatter(
 app.logger.addHandler(handler)
 
 
-app,logging.info('debug.log',)
+app, logging.info('debug.log',)
 
 db = SQLAlchemy(app)
 from PMtools import models

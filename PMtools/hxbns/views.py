@@ -41,8 +41,9 @@ def changevlc():
     rm.get_cookie()
     rm.get_validateCode()
     session['user'] = rm.cookie
-    print(session)
+    #print(session)
     return 'succuess'
+
 
 @hxbns.route('/hxbnsupload/')
 def hxbnsupload():
@@ -54,7 +55,6 @@ def postvlc():
     validateCode = request.args.get('vlc')###存在bug不能使用request
     rm = process_file.RequestsMethods()
     rm.setcookie(session['user'])
-    #session.clear()
     print(session)
     if rm.login(validateCode):
         print("登录成功")
