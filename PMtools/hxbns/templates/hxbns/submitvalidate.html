@@ -22,17 +22,16 @@
 
 <script type = "text/javascript" >
     function update_image() {
-        url = '/hxbns/changevlc/'
         $.ajax({
             type: "get",
-            url: url,
+            url: '/hxbns/changevlc/',
             dataType:'json',
-            success: function (dates) {
-            },
             error: function () {
+                $("#vlc").attr("src","/static/images/hxbns/validateCode.png?" + Math.random());
             }
         });
-        document.getElementById('vlc').src = "/static/images/hxbns/validateCode.png?" + Math.random()
+
+
     }
 
     function submitvlc() {
